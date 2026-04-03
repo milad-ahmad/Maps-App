@@ -10,6 +10,9 @@ import SwiftData
 
 @main
 struct MapsApp: App {
+    
+    @StateObject private var vm = LocationsViewModel()
+    
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
@@ -25,7 +28,8 @@ struct MapsApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LocationsView()
+                .environmentObject(vm)
         }
         .modelContainer(sharedModelContainer)
     }
